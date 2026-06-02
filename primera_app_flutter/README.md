@@ -1,17 +1,9 @@
-# climate_app
+# Climate App
+App básica en Flutter para demostrar la configuración del entorno, la estructura inicial del proyecto y el funcionamiento del Hot Reload.
 
-A new Flutter project.
+## Setup
+1. Descargar dependencias: `flutter pub get`
+2. Ejecutar la app: `flutter run`
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Resultado Esperado
+La aplicación mostrará una pantalla con texto centrado indicando una temperatura (23°C), la ciudad (Santiago de Querétaro) y un ícono representativo del clima actual.  
