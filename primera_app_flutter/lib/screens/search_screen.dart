@@ -1,33 +1,26 @@
 import 'package:flutter/material.dart';
-import 'detail_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
-
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final List<String> cities = [
-    'Santiago de Querétaro',
-    'Monterrey',
-    'Ciudad de México',
-    'Guadalajara',
-  ];
-  List<String> filtered = [];
+  String searchQuery = '';
+  List<String> cities = ['Santiago', 'Querétaro', 'México', 'Guadalajara'];
+  List<String> filteredCities = [];
 
   @override
   void initState() {
     super.initState();
-    filtered = cities;
+    filteredCities = cities;
   }
 
   void filterCities(String query) {
     setState(() {
-      filtered = cities
-          .where((c) => c.toLowerCase().contains(query.toLowerCase()))
-          .toList();
+      searchQuery = query;
+      filteredCities = cities.where((c) => c.toLowerCase().contains(query.toLowerCase())).toList();
     });
   }
 
@@ -39,40 +32,32 @@ class _SearchScreenState extends State<SearchScreen> {
         children: [
           Padding(
             padding: const EdgeInsets.all(16),
-            child: TextField(
-              onChanged: filterCities,
-              decoration: InputDecoration(
-                hintText: 'Busca una ciudad...',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: filtered.length,
-              itemBuilder: (context, index) {
-                final city = filtered[index];
-                return ListTile(
-                  leading: const Icon(Icons.location_city, color: Colors.blue),
-                  title: Text(city),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailScreen(city: city),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
-          ),
-        ],
-      ),
+            child: TextField(onChanged: filterCities, decoration: const InputDecoration(hintText: 'Busca...', border: OutlineInputBor            child: TextField(onChanged: f
+                                                    nt          Text('No encontradas')) : ListView.builder(
+              itemCount: filteredCities.length,
+              itemBuilder: (c              itemBuildele(              itemBuilder: (c              itemBuildele(              itemBu()              itemBuilder: (c     dCi          ])              itemB                itemBu                 itemBuilder: );   }
+              itemBuilder: (c     ho              itmp              itemBuildeeri              itemBuilder: (c     ho              itmp              itemBuildeeri              itepo      /u ils/          il              itemBuilder: (c     ho 
+
+
+             iteexte             iteexte             iteexte             iteexr(             iteexri             iteeree             it) =>             iteexte             iteexte     e              iteexte             iteexte             iteexte             iteexr(             iteexri             iteeree             it) =>             iteexte             i(c             iteexte             iteexte             iteexte             iteexr(             iteexri      xt             iteexte             iteexte      ti             iteexte             iteexte             iteexte             iteexr(             iteexri             iteeree             it) =>             iteexte             iteexte     e              iteexte             iteexte             iteexte             rn Center(child: Text('Error: ${weatherData.errorMessage}'));
+          if (weatherData.weather == null) return const Center(child: Text('No data'));
+
+          final w = weatherData.weather!;
+          final displayTemp = weatherData.temperatureUnit == '°C' ? w.temperature : WeatherUtils.celsiusToFahrenheit(w.temperature).toInt();
+
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(WeatherUtils.getWeatherIcon(w.condition), style: const TextStyle(fontSize: 80)),
+                Text('$displayTemp${weatherData.temperatureUnit}', style: const TextStyle(fontSize: 72, fontWeight: FontWeight.bold)),
+                Text(w.city, style: const TextStyle(fontSize: 24)),
+                Text('Humidity: ${w.humidity}%'),
+                const SizedBox(height: 20),
+                ElevatedButton(onPressed: () => weatherData.toggleTemperatureUnit(), child: const Text('Cambiar unidad')),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                                                                                                    onst                                        ld                                                                                                    onst                                    < '                     impo                         ia                                                         'p                        r.                                                                                                    s                                                                                                     onst                            ovi                                                                  er                                              owCh                                          p', theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true), home: const HomeScreen()),
     );
   }
 }
