@@ -9,6 +9,24 @@ android {
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
+
+    signingConfigs {
+        create("release") {
+            keyAlias = "climate_key"
+            keyPassword = System.getenv("KEY_PASSWORD") ?: "yukiylu03"
+            storeFile = file("climate_app.jks")
+            storePassword = System.getenv("STORE_PASSWORD") ?: "yukiylu03"
+        }
+    }
+
+    buildTypes {
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
